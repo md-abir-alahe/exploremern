@@ -4,18 +4,22 @@ const express = require('express');
 const app = express();
 
 dotenv.config({ path: './config.env' });
+require('./db/conn');
+// const User = require('./model/userSchema');
+
+app.use(express.json());
 
 
-const DB = process.env.DATABASE;
+// we link the router file  
+app.use(require('./router/auth'));
 
-mongoose.connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-}).then(() => {
-    console.log(`connection successful`);
-}).catch((err) => console.log(`no connection`));
+
+
+
+
+const PORT = process.env.PORT;
+
+
 
 
 
@@ -51,7 +55,7 @@ app.get('/signup', (req, res) => {
 });
 
 
-app.listen(3000, () => {
-    console.log(`server is running at port no 3000`);
+app.listen(PORT, () => {
+    console.log(`server is running at port no ${PORT}`);
 })
 
