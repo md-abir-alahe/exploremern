@@ -43,6 +43,7 @@ app.get('/about', middleware, (req, res) => {
 });
 
 app.get('/contact', (req, res) => {
+    // res.cookie("test", 'Abir');
     res.send(`Hello contact World form the server`);
 });
 
